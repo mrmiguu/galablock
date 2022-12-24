@@ -1,0 +1,49 @@
+{
+  "tiles": {
+    "b1": ["./assets/sprites/ACTION RPG MATERIAL VOL.2/Mapchip/barrel2_01.png"],
+    "b2": ["./assets/sprites/ACTION RPG MATERIAL VOL.2/Mapchip/barrel2_02.png"],
+    "B1": ["./assets/sprites/ACTION RPG MATERIAL VOL.2/Mapchip/bridge2_01.png"],
+    "B2": ["./assets/sprites/ACTION RPG MATERIAL VOL.2/Mapchip/bridge2_02.png"],
+    "B3": ["./assets/sprites/ACTION RPG MATERIAL VOL.2/Mapchip/bridge2_03.png"],
+    "B4": ["./assets/sprites/ACTION RPG MATERIAL VOL.2/Mapchip/bridge2_04.png"],
+    "f1": ["./assets/sprites/ACTION RPG MATERIAL VOL.2/Mapchip/fence2_01.png"],
+    "f2": ["./assets/sprites/ACTION RPG MATERIAL VOL.2/Mapchip/fence2_02.png"],
+    "f3": ["./assets/sprites/ACTION RPG MATERIAL VOL.2/Mapchip/fence2_03.png"],
+    "f4": ["./assets/sprites/ACTION RPG MATERIAL VOL.2/Mapchip/fence2_04.png"],
+    "f5": ["./assets/sprites/ACTION RPG MATERIAL VOL.2/Mapchip/fence2_05.png"],
+    "f6": ["./assets/sprites/ACTION RPG MATERIAL VOL.2/Mapchip/fence2_06.png"],
+    "f7": ["./assets/sprites/ACTION RPG MATERIAL VOL.2/Mapchip/fence2_07.png"],
+    "f8": ["./assets/sprites/ACTION RPG MATERIAL VOL.2/Mapchip/fence2_08.png"],
+    "f9": ["./assets/sprites/ACTION RPG MATERIAL VOL.2/Mapchip/fence2_09.png"],
+    "fa": ["./assets/sprites/ACTION RPG MATERIAL VOL.2/Mapchip/fence2_10.png"],
+    "fb": ["./assets/sprites/ACTION RPG MATERIAL VOL.2/Mapchip/fence2_11.png"],
+    "fc": ["./assets/sprites/ACTION RPG MATERIAL VOL.2/Mapchip/fence2_12.png"],
+    "F1": ["./assets/sprites/ACTION RPG MATERIAL VOL.2/Mapchip/flower2_01.png"],
+    "F2": ["./assets/sprites/ACTION RPG MATERIAL VOL.2/Mapchip/flower2_02.png"],
+    "F3": ["./assets/sprites/ACTION RPG MATERIAL VOL.2/Mapchip/flower2_03.png"],
+    "F4": ["./assets/sprites/ACTION RPG MATERIAL VOL.2/Mapchip/flower2_04.png"],
+    "g1": ["./assets/sprites/ACTION RPG MATERIAL VOL.2/Mapchip/grass2_01.png"],
+    "g2": ["./assets/sprites/ACTION RPG MATERIAL VOL.2/Mapchip/grass2_02.png"],
+    "g3": ["./assets/sprites/ACTION RPG MATERIAL VOL.2/Mapchip/grass2_03.png"],
+    "g4": ["./assets/sprites/ACTION RPG MATERIAL VOL.2/Mapchip/grass2_04.png"],
+    "t1": ["./assets/sprites/ACTION RPG MATERIAL VOL.2/Mapchip/til2_01.png"],
+    "t2": ["./assets/sprites/ACTION RPG MATERIAL VOL.2/Mapchip/til2_02.png"],
+    "t3": ["./assets/sprites/ACTION RPG MATERIAL VOL.2/Mapchip/til2_03.png"],
+    "t4": ["./assets/sprites/ACTION RPG MATERIAL VOL.2/Mapchip/til2_04.png"],
+    "t5": ["./assets/sprites/ACTION RPG MATERIAL VOL.2/Mapchip/til2_05.png"],
+    "t6": ["./assets/sprites/ACTION RPG MATERIAL VOL.2/Mapchip/til2_06.png"],
+    "t7": ["./assets/sprites/ACTION RPG MATERIAL VOL.2/Mapchip/til2_07.png"],
+    "t8": ["./assets/sprites/ACTION RPG MATERIAL VOL.2/Mapchip/til2_08.png"],
+    "t9": ["./assets/sprites/ACTION RPG MATERIAL VOL.2/Mapchip/til2_09.png"],
+    "ta": ["./assets/sprites/ACTION RPG MATERIAL VOL.2/Mapchip/til2_10.png"],
+    "tb": ["./assets/sprites/ACTION RPG MATERIAL VOL.2/Mapchip/til2_11.png"],
+    "tc": ["./assets/sprites/ACTION RPG MATERIAL VOL.2/Mapchip/til2_12.png"]
+  },
+  "sprites": {
+    "m1": [
+      "./assets/sprites/ACTION RPG MATERIAL VOL.2/CharaChip/man2/man2_01.png",
+      "./assets/sprites/ACTION RPG MATERIAL VOL.2/CharaChip/man2/man2_02.png",
+      "./assets/sprites/ACTION RPG MATERIAL VOL.2/CharaChip/man2/man2_03.png"
+    ]
+  }
+}
