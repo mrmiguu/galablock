@@ -184,6 +184,10 @@
     "wm": [
       "./assets/sprites/ACTION RPG MATERIAL VOL.2/CharaChip/women2/women2_02.png",
       "./assets/sprites/ACTION RPG MATERIAL VOL.2/CharaChip/women2/women2_03.png"
+    ],
+    "sl": [
+      "./assets/sprites/ACTION RPG MATERIAL VOL.2/MonsterChip/slime/slime_01.png",
+      "./assets/sprites/ACTION RPG MATERIAL VOL.2/MonsterChip/slime/slime_02.png"
     ]
   }
 }

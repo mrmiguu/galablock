@@ -20,8 +20,25 @@ function App() {
     sendEngine({ type: Action.SetPlanet, planet })
 
     for (const _ of Array(10)) {
-      const seed = `${planet}_enemies`
+      const seed = `${planet}_npcs`
       const sprites = ['fi', 'he', 'hr', 'kg', 'kn', 'mn', 'om', 'ow', 'po', 'wm'] as const
+      const faces = ['top', 'left', 'front', 'right', 'bottom', 'back'] as const
+
+      sendEngine({
+        type: Action.CreateSprite,
+        sprite: {
+          id: uuid({ seed }),
+          blockFace: pickRandom(faces, { seed }),
+          sprite: pickRandom(sprites, { seed }),
+          x: ~~(random({ seed }) * size),
+          y: ~~(random({ seed }) * size),
+        },
+      })
+    }
+
+    for (const _ of Array(10)) {
+      const seed = `${planet}_monsters`
+      const sprites = ['sl'] as const
       const faces = ['top', 'left', 'front', 'right', 'bottom', 'back'] as const
 
       sendEngine({
