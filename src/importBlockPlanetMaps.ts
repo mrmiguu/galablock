@@ -4,9 +4,14 @@ import { fetchImport } from './utils'
 
 const imports = import.meta.glob<{ default: any }>('./blockPlanetMap*.json')
 
+type TileKind = 'block'
+
 type BlockPlanetMapLegendData = {
   tiles: {
     [key: string]: string[]
+  }
+  kinds: {
+    [key: string]: TileKind
   }
   sprites: {
     [key: string]: string[]
@@ -41,7 +46,7 @@ async function fetchMapDataImport(mapNumber: number): Promise<BlockPlanetMapData
       `./blockPlanetMapTiles_${mapNumberPaddedWithZeroes}.json`,
     )
 
-    const sepChar = ' '
+    const sepChar = '.'
 
     const tiles: BlockPlanetMapTileData = {
       top: rawMapTileData[0].map(raw => raw.split(sepChar)),
