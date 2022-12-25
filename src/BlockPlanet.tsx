@@ -1,9 +1,8 @@
-import { useAsync } from 'react-use'
 import BlockPlanetFace from './BlockPlanetFace'
 import * as styles from './BlockPlanetStyles'
 import { Face } from './BlockPlanetTypes'
 import { tilePx } from './consts'
-import { fetchMapDataImport } from './importBlockPlanetMaps'
+import { useMapDataImport } from './importBlockPlanetMaps'
 
 type BlockPlanetProps = {
   mapNumber: number
@@ -13,7 +12,7 @@ type BlockPlanetProps = {
 }
 
 function BlockPlanet({ mapNumber, camera, cameraX, cameraY }: BlockPlanetProps) {
-  const { value: mapData } = useAsync(() => fetchMapDataImport(mapNumber), [mapNumber])
+  const { value: mapData } = useMapDataImport(mapNumber)
 
   if (!mapData) return null
 

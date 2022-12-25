@@ -40,9 +40,45 @@
     "tc": ["./assets/sprites/ACTION RPG MATERIAL VOL.2/Mapchip/til2_12.png"]
   },
   "sprites": {
-    "m1": [
+    "fi": [
+      "./assets/sprites/ACTION RPG MATERIAL VOL.2/CharaChip/fighter2/fighter2_02.png",
+      "./assets/sprites/ACTION RPG MATERIAL VOL.2/CharaChip/fighter2/fighter2_03.png"
+    ],
+    "he": [
+      "./assets/sprites/ACTION RPG MATERIAL VOL.2/CharaChip/hero2/hero2_02.png",
+      "./assets/sprites/ACTION RPG MATERIAL VOL.2/CharaChip/hero2/hero2_03.png"
+    ],
+    "hr": [
+      "./assets/sprites/ACTION RPG MATERIAL VOL.2/CharaChip/heroine2/heroine2_02.png",
+      "./assets/sprites/ACTION RPG MATERIAL VOL.2/CharaChip/heroine2/heroine2_03.png"
+    ],
+    "kg": [
+      "./assets/sprites/ACTION RPG MATERIAL VOL.2/CharaChip/king2/king2_02.png",
+      "./assets/sprites/ACTION RPG MATERIAL VOL.2/CharaChip/king2/king2_03.png"
+    ],
+    "kn": [
+      "./assets/sprites/ACTION RPG MATERIAL VOL.2/CharaChip/knight2/knight2_02.png",
+      "./assets/sprites/ACTION RPG MATERIAL VOL.2/CharaChip/knight2/knight2_03.png"
+    ],
+    "mn": [
       "./assets/sprites/ACTION RPG MATERIAL VOL.2/CharaChip/man2/man2_02.png",
       "./assets/sprites/ACTION RPG MATERIAL VOL.2/CharaChip/man2/man2_03.png"
+    ],
+    "om": [
+      "./assets/sprites/ACTION RPG MATERIAL VOL.2/CharaChip/old man2/old man2_02.png",
+      "./assets/sprites/ACTION RPG MATERIAL VOL.2/CharaChip/old man2/old man2_03.png"
+    ],
+    "ow": [
+      "./assets/sprites/ACTION RPG MATERIAL VOL.2/CharaChip/old women2/old women2_02.png",
+      "./assets/sprites/ACTION RPG MATERIAL VOL.2/CharaChip/old women2/old women2_03.png"
+    ],
+    "po": [
+      "./assets/sprites/ACTION RPG MATERIAL VOL.2/CharaChip/postor2/postor2_02.png",
+      "./assets/sprites/ACTION RPG MATERIAL VOL.2/CharaChip/postor2/postor2_03.png"
+    ],
+    "wm": [
+      "./assets/sprites/ACTION RPG MATERIAL VOL.2/CharaChip/women2/women2_02.png",
+      "./assets/sprites/ACTION RPG MATERIAL VOL.2/CharaChip/women2/women2_03.png"
     ]
   }
 }

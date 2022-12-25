@@ -20,7 +20,7 @@ function App() {
       type: Action.CreateSprite,
       sprite: {
         id: myId,
-        sprite: 'm1',
+        sprite: 'mn',
         blockFace: 'front',
         x: 4,
         y: 4,
