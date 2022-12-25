@@ -6,7 +6,7 @@ import { Action, Direction } from './BlockPlanetTypes'
 import { tilePx } from './consts'
 import { useEngine } from './Engine'
 import ScreenDPad from './ScreenDPad'
-import { keys } from './utils'
+import { keys, pickRandom, random, uuid } from './utils'
 
 function App() {
   const myId = 'abc-123'
@@ -14,7 +14,26 @@ function App() {
   const [engine, sendEngine] = useEngine()
 
   useEffect(() => {
-    sendEngine({ type: Action.SetMap, map: { size: 9 } })
+    const size = 9
+
+    sendEngine({ type: Action.SetMap, map: { size } })
+
+    for (const _ of Array(10)) {
+      const seed = '0_enemies'
+      const sprites = ['fi', 'he', 'hr', 'kg', 'kn', 'mn', 'om', 'ow', 'po', 'wm'] as const
+      const faces = ['top', 'left', 'front', 'right', 'bottom', 'back'] as const
+
+      sendEngine({
+        type: Action.CreateSprite,
+        sprite: {
+          id: uuid({ seed }),
+          blockFace: pickRandom(faces, { seed }),
+          sprite: pickRandom(sprites, { seed }),
+          x: ~~(random({ seed }) * size),
+          y: ~~(random({ seed }) * size),
+        },
+      })
+    }
 
     sendEngine({
       type: Action.CreateSprite,

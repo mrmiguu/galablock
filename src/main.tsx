@@ -6,10 +6,12 @@ import { EngineProvider } from './Engine'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
+  // <React.StrictMode>
+  <>
     <EngineProvider>
       <App />
     </EngineProvider>
     <Toaster />
-  </React.StrictMode>,
+  </>,
+  // </React.StrictMode>,
 )
