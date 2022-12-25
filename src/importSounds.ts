@@ -4,7 +4,7 @@ import { fetchImport } from './utils'
 
 const imports = import.meta.glob<{ default: string }>('./assets/sounds/**/*')
 
-type Sound = 'bump' | 'step'
+type Sound = 'bump' | 'step' | 'hit'
 
 const cache: { [sound: string]: Howl } = {}
 

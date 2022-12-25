@@ -2,11 +2,11 @@ import { useEffect } from 'react'
 import useWindowSize from 'react-use/lib/useWindowSize'
 
 import BlockPlanet from './BlockPlanet'
-import { Action, Direction, Planet } from './BlockPlanetTypes'
+import { Action, Direction, Face, Planet } from './BlockPlanetTypes'
 import { tilePx } from './consts'
 import { useEngine } from './Engine'
 import ScreenDPad from './ScreenDPad'
-import { keys, pickRandom, random, uuid } from './utils'
+import { keys, pickRandom, random, shuffle, uuid } from './utils'
 
 function App() {
   const myId = 'abc-123'
@@ -17,52 +17,66 @@ function App() {
     const planet = Planet.Tutorial
     const size = 9
 
+    const shuffledTiles = [
+      ...[...Array(size ** 2)].map((_, i) => ['top', i % size, ~~(i / size)] as const),
+      ...[...Array(size ** 2)].map((_, i) => ['left', i % size, ~~(i / size)] as const),
+      ...[...Array(size ** 2)].map((_, i) => ['front', i % size, ~~(i / size)] as const),
+      ...[...Array(size ** 2)].map((_, i) => ['right', i % size, ~~(i / size)] as const),
+      ...[...Array(size ** 2)].map((_, i) => ['bottom', i % size, ~~(i / size)] as const),
+      ...[...Array(size ** 2)].map((_, i) => ['back', i % size, ~~(i / size)] as const),
+    ]
+    shuffle(shuffledTiles, { seed: `${planet}_objects` })
+
     sendEngine({ type: Action.SetPlanet, planet })
 
-    for (const _ of Array(10)) {
+    for (const _ of Array(60)) {
       const seed = `${planet}_npcs`
       const sprites = ['fi', 'he', 'hr', 'kg', 'kn', 'mn', 'om', 'ow', 'po', 'wm'] as const
-      const faces = ['top', 'left', 'front', 'right', 'bottom', 'back'] as const
+
+      const [blockFace, x, y] = shuffledTiles.pop()!
 
       sendEngine({
         type: Action.CreateSprite,
         sprite: {
           id: uuid({ seed }),
-          blockFace: pickRandom(faces, { seed }),
           sprite: pickRandom(sprites, { seed }),
-          x: ~~(random({ seed }) * size),
-          y: ~~(random({ seed }) * size),
+          blockFace,
+          x,
+          y,
           hp: -1,
         },
       })
     }
 
-    for (const _ of Array(10)) {
+    for (const _ of Array(60)) {
       const seed = `${planet}_monsters`
       const sprites = ['sl'] as const
-      const faces = ['top', 'left', 'front', 'right', 'bottom', 'back'] as const
+
+      const [blockFace, x, y] = shuffledTiles.pop()!
 
       sendEngine({
         type: Action.CreateSprite,
         sprite: {
           id: uuid({ seed }),
-          blockFace: pickRandom(faces, { seed }),
           sprite: pickRandom(sprites, { seed }),
-          x: ~~(random({ seed }) * size),
-          y: ~~(random({ seed }) * size),
+          blockFace,
+          x,
+          y,
           hp: 1,
         },
       })
     }
+
+    const [blockFace, x, y] = shuffledTiles.pop()!
 
     sendEngine({
       type: Action.CreateSprite,
       sprite: {
         id: myId,
         sprite: 'mn',
-        blockFace: 'front',
-        x: 4,
-        y: 4,
+        blockFace,
+        x,
+        y,
         hp: 5,
       },
     })

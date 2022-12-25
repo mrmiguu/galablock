@@ -16,6 +16,7 @@ type Sprite = {
   x: number
   y: number
   hp: number
+  pain?: boolean
 }
 
 enum Planet {

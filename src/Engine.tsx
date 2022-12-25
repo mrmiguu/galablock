@@ -9,10 +9,21 @@ const EngineContext = createContext<[EngineState, Dispatch<EngineActionPayload>]
 function EngineProvider({ children }: PropsWithChildren) {
   const { value: stepSound } = useSound('step', { volume: 0.2 })
   const { value: bumpSound } = useSound('bump', { volume: 0.2 })
+  const { value: hitSound } = useSound('hit', { volume: 0.2 })
 
   const engineContext = useReducer(
     (engine: EngineState, payload: EngineActionPayload) =>
       produce(engine, engine => {
+        for (const spriteId in engine.sprites) {
+          const sprite = engine.sprites[spriteId]!
+
+          delete sprite.pain
+
+          if (sprite.hp === 0) {
+            delete engine.sprites[spriteId]
+          }
+        }
+
         if (payload.type === Action.SetPlanet) {
           engine.planet.number = payload.planet
         }
@@ -174,9 +185,15 @@ function EngineProvider({ children }: PropsWithChildren) {
             }
 
             if (tryMoving) {
-              const collision = values(engine.sprites).some(s => s.blockFace === blockFace && s.x === x && s.y === y)
+              const collision = values(engine.sprites).find(s => s.blockFace === blockFace && s.x === x && s.y === y)
 
               if (collision) {
+                if (collision.hp > 0) {
+                  collision.hp--
+                  collision.pain = true
+                  hitSound?.play()
+                }
+
                 blockFace = sprite.blockFace
                 x = sprite.x
                 y = sprite.y

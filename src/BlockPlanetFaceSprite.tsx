@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import toast from 'react-hot-toast'
 import { useAsync } from 'react-use'
+import { Sprite } from './BlockPlanetTypes'
 
 import { tilePx } from './consts'
 import { fetchSprite } from './importSprites'
@@ -13,13 +14,9 @@ type MultipleAnimationFrames = {
   imageURLs: string[]
 }
 
-type BlockPlanetFaceSpriteProps = {
-  x: number
-  y: number
-  rotate: number
-} & (SingleAnimationFrame | MultipleAnimationFrames)
+type BlockPlanetFaceSpriteProps = Sprite & (SingleAnimationFrame | MultipleAnimationFrames)
 
-function BlockPlanetFaceSprite({ x, y, rotate = 0, ...props }: BlockPlanetFaceSpriteProps) {
+function BlockPlanetFaceSprite({ x, y, hp, pain, ...props }: BlockPlanetFaceSpriteProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   const imageURLs = 'imageURL' in props ? [props.imageURL] : props.imageURLs
@@ -29,6 +26,8 @@ function BlockPlanetFaceSprite({ x, y, rotate = 0, ...props }: BlockPlanetFaceSp
     loading,
     error,
   } = useAsync(() => Promise.all(imageURLs.map(fetchSprite)), [stringify(imageURLs)])
+
+  const pulsating = loading || pain
 
   const [animFrame, setAnimFrame] = useState(0)
 
@@ -58,12 +57,12 @@ function BlockPlanetFaceSprite({ x, y, rotate = 0, ...props }: BlockPlanetFaceSp
 
   return (
     <div
-      className={`absolute top-0 left-0 ${loading && 'animate-pulse'}`}
+      className={`absolute top-0 left-0 ${pulsating && 'animate-pulse'} ${hp === 0 && 'grayscale'}`}
       // transition-transform ease-[cubic-bezier(0.16,1,0.3,1)] duration-1000
       style={{
         width: `${tilePx}px`,
         height: `${tilePx}px`,
-        transform: `translate(${x * tilePx}px, ${y * tilePx}px) rotate(${rotate}deg)`,
+        transform: `translate(${x * tilePx}px, ${y * tilePx}px)`,
       }}
     >
       <canvas ref={canvasRef} className="origin-bottom" width={tilePx} height={tilePx} />

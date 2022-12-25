@@ -32,8 +32,8 @@ function BlockPlanetFace({ face, mapData }: BlockPlanetFaceProps) {
         )),
       )}
 
-      {sprites.map(({ id, x, y, sprite }) => (
-        <BlockPlanetFaceSprite key={id} x={x} y={y} rotate={0} imageURLs={mapData.legend.sprites[sprite]!} />
+      {sprites.map(({ id, sprite }) => (
+        <BlockPlanetFaceSprite key={id} {...engine.sprites[id]!} imageURLs={mapData.legend.sprites[sprite]!} />
       ))}
     </div>
   )
