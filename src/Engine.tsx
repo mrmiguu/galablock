@@ -174,7 +174,7 @@ function EngineProvider({ children }: PropsWithChildren) {
             }
 
             if (tryMoving) {
-              const collision = values(engine.sprites).some(s => s.x === x && s.y === y)
+              const collision = values(engine.sprites).some(s => s.blockFace === blockFace && s.x === x && s.y === y)
 
               if (collision) {
                 blockFace = sprite.blockFace
