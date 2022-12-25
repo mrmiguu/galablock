@@ -27,7 +27,7 @@ function App() {
     ]
     shuffle(shuffledTiles, { seed: `${planet}_objects` })
 
-    sendEngine({ type: Action.SetPlanet, planet })
+    sendEngine({ action: Action.SetPlanet, planet })
 
     for (const _ of Array(60)) {
       const seed = `${planet}_npcs`
@@ -36,7 +36,7 @@ function App() {
       const [blockFace, x, y] = shuffledTiles.pop()!
 
       sendEngine({
-        type: Action.CreateSprite,
+        action: Action.CreateSprite,
         sprite: {
           id: uuid({ seed }),
           sprite: pickRandom(sprites, { seed }),
@@ -55,7 +55,7 @@ function App() {
       const [blockFace, x, y] = shuffledTiles.pop()!
 
       sendEngine({
-        type: Action.CreateSprite,
+        action: Action.CreateSprite,
         sprite: {
           id: uuid({ seed }),
           sprite: pickRandom(sprites, { seed }),
@@ -70,7 +70,7 @@ function App() {
     const [blockFace, x, y] = shuffledTiles.pop()!
 
     sendEngine({
-      type: Action.CreateSprite,
+      action: Action.CreateSprite,
       sprite: {
         id: myId,
         sprite: 'mn',
@@ -89,10 +89,10 @@ function App() {
   const isPortrait = width < height
   const scale = (isPortrait ? width / blockPlanetWidthPx : height / blockPlanetWidthPx) * 0.9
 
-  const goUp = () => sendEngine({ type: Action.MoveSprite, dir: Direction.Up, spriteId: myId })
-  const goLeft = () => sendEngine({ type: Action.MoveSprite, dir: Direction.Left, spriteId: myId })
-  const goDown = () => sendEngine({ type: Action.MoveSprite, dir: Direction.Down, spriteId: myId })
-  const goRight = () => sendEngine({ type: Action.MoveSprite, dir: Direction.Right, spriteId: myId })
+  const goUp = () => sendEngine({ action: Action.MoveSprite, dir: Direction.Up, spriteId: myId })
+  const goLeft = () => sendEngine({ action: Action.MoveSprite, dir: Direction.Left, spriteId: myId })
+  const goDown = () => sendEngine({ action: Action.MoveSprite, dir: Direction.Down, spriteId: myId })
+  const goRight = () => sendEngine({ action: Action.MoveSprite, dir: Direction.Right, spriteId: myId })
 
   useEffect(() => {
     const onKeyUp = (e: KeyboardEvent) => {

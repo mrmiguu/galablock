@@ -24,11 +24,11 @@ function EngineProvider({ children }: PropsWithChildren) {
           }
         }
 
-        if (payload.type === Action.SetPlanet) {
+        if (payload.action === Action.SetPlanet) {
           engine.planet.number = payload.planet
         }
 
-        if (payload.type === Action.MoveSprite) {
+        if (payload.action === Action.MoveSprite) {
           const sprite = engine.sprites[payload.spriteId]
 
           if (sprite) {
@@ -186,12 +186,12 @@ function EngineProvider({ children }: PropsWithChildren) {
 
             if (tryMoving) {
               const collision = values(engine.sprites).find(s => s.blockFace === blockFace && s.x === x && s.y === y)
+              const hit = collision && collision.hp > 0
 
               if (collision) {
-                if (collision.hp > 0) {
+                if (hit) {
                   collision.hp--
                   collision.pain = true
-                  hitSound?.play()
                 }
 
                 blockFace = sprite.blockFace
@@ -199,7 +199,10 @@ function EngineProvider({ children }: PropsWithChildren) {
                 y = sprite.y
               }
 
-              if (y !== sprite.y || x !== sprite.x) stepSound?.play()
+              const moved = y !== sprite.y || x !== sprite.x
+
+              if (hit) hitSound?.play()
+              else if (moved) stepSound?.play()
               else bumpSound?.play()
             }
 
@@ -209,16 +212,16 @@ function EngineProvider({ children }: PropsWithChildren) {
           }
         }
 
-        if (payload.type === Action.CreateSprite) {
+        if (payload.action === Action.CreateSprite) {
           engine.sprites[payload.sprite.id] = payload.sprite
         }
-        if (payload.type === Action.UpdateSprite) {
+        if (payload.action === Action.UpdateSprite) {
           engine.sprites[payload.sprite.id] = {
             ...engine.sprites[payload.sprite.id],
             ...payload.sprite,
           } as Sprite
         }
-        if (payload.type === Action.DeleteSprite) {
+        if (payload.action === Action.DeleteSprite) {
           delete engine.sprites[payload.spriteId]
         }
       }),

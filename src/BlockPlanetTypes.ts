@@ -45,25 +45,25 @@ enum Action {
 }
 
 type SetPlanetPayload = {
-  type: Action.SetPlanet
+  action: Action.SetPlanet
   planet: Planet
 }
 
 type CreateSpritePayload = {
-  type: Action.CreateSprite
+  action: Action.CreateSprite
   sprite: Sprite
 }
 type UpdateSpritePayload = {
-  type: Action.UpdateSprite
+  action: Action.UpdateSprite
   sprite: Pick<Sprite, 'id'> & Partial<Omit<Sprite, 'id'>>
 }
 type DeleteSpritePayload = {
-  type: Action.DeleteSprite
+  action: Action.DeleteSprite
   spriteId: string
 }
 
 type MoveSpritePayload = {
-  type: Action.MoveSprite
+  action: Action.MoveSprite
   dir: Direction.Up | Direction.Left | Direction.Down | Direction.Right
   spriteId: string
 }
