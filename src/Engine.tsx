@@ -29,198 +29,187 @@ function EngineProvider({ children }: PropsWithChildren) {
         }
 
         if (payload.action === Action.MoveSprite) {
-          const sprite = engine.sprites[payload.spriteId]
+          const sprite = engine.sprites[payload.spriteId]!
+          const endTile = engine.planet.size - 1
 
-          if (sprite) {
-            const endTile = engine.planet.size - 1
-            let { x, y, blockFace } = sprite
-            let tryMoving = false
+          let { x, y, blockFace } = sprite
 
-            if (payload.dir === Direction.Up) {
-              if (y === 0) {
-                const sw: Record<Face, Function> = {
-                  top() {
-                    blockFace = 'back'
-                    y = endTile
-                  },
-                  left() {
-                    blockFace = 'top'
-                    x = 0
-                    y = sprite.x
-                  },
-                  front() {
-                    blockFace = 'top'
-                    y = endTile
-                  },
-                  right() {
-                    blockFace = 'top'
-                    x = endTile
-                    y = endTile - sprite.x
-                  },
-                  bottom() {
-                    blockFace = 'front'
-                    y = endTile
-                  },
-                  back() {
-                    blockFace = 'bottom'
-                    y = endTile
-                  },
-                }
-                sw[blockFace]()
-              } else y--
-
-              tryMoving = true
-            }
-
-            if (payload.dir === Direction.Left) {
-              if (x === 0) {
-                const sw: Record<Face, Function> = {
-                  top() {
-                    blockFace = 'left'
-                    x = sprite.y
-                    y = 0
-                  },
-                  left() {
-                    blockFace = 'back'
-                    x = 0
-                    y = endTile - sprite.y
-                  },
-                  front() {
-                    blockFace = 'left'
-                    x = endTile
-                  },
-                  right() {
-                    blockFace = 'front'
-                    x = endTile
-                  },
-                  bottom() {
-                    blockFace = 'left'
-                    y = endTile
-                    x = endTile - sprite.y
-                  },
-                  back() {
-                    blockFace = 'left'
-                    x = 0
-                    y = endTile - sprite.y
-                  },
-                }
-                sw[blockFace]()
-              } else x--
-
-              tryMoving = true
-            }
-
-            if (payload.dir === Direction.Down) {
-              if (y === endTile) {
-                const sw: Record<Face, Function> = {
-                  top() {
-                    blockFace = 'front'
-                    y = 0
-                  },
-                  left() {
-                    blockFace = 'bottom'
-                    x = 0
-                    y = endTile - sprite.x
-                  },
-                  front() {
-                    blockFace = 'bottom'
-                    y = 0
-                  },
-                  right() {
-                    blockFace = 'bottom'
-                    x = endTile
-                    y = sprite.x
-                  },
-                  bottom() {
-                    blockFace = 'back'
-                    y = 0
-                  },
-                  back() {
-                    blockFace = 'top'
-                    y = 0
-                  },
-                }
-                sw[blockFace]()
-              } else y++
-
-              tryMoving = true
-            }
-
-            if (payload.dir === Direction.Right) {
-              if (x === endTile) {
-                const sw: Record<Face, Function> = {
-                  top() {
-                    blockFace = 'right'
-                    x = endTile - sprite.y
-                    y = 0
-                  },
-                  left() {
-                    blockFace = 'front'
-                    x = 0
-                  },
-                  front() {
-                    blockFace = 'right'
-                    x = 0
-                  },
-                  right() {
-                    blockFace = 'back'
-                    x = endTile
-                    y = endTile - sprite.y
-                  },
-                  bottom() {
-                    blockFace = 'right'
-                    x = sprite.y
-                    y = endTile
-                  },
-                  back() {
-                    blockFace = 'right'
-                    x = endTile
-                    y = endTile - sprite.y
-                  },
-                }
-                sw[blockFace]()
-              } else x++
-
-              tryMoving = true
-            }
-
-            if (tryMoving) {
-              const collision = values(engine.sprites).find(s => s.blockFace === blockFace && s.x === x && s.y === y)
-              const hit = collision && collision.hp > 0
-
-              if (collision) {
-                if (hit) {
-                  collision.hp--
-                  collision.pain = true
-                }
-
-                blockFace = sprite.blockFace
-                x = sprite.x
-                y = sprite.y
+          if (payload.dir === Direction.Up) {
+            if (y === 0) {
+              const sw: Record<Face, Function> = {
+                top() {
+                  blockFace = 'back'
+                  y = endTile
+                },
+                left() {
+                  blockFace = 'top'
+                  x = 0
+                  y = sprite.x
+                },
+                front() {
+                  blockFace = 'top'
+                  y = endTile
+                },
+                right() {
+                  blockFace = 'top'
+                  x = endTile
+                  y = endTile - sprite.x
+                },
+                bottom() {
+                  blockFace = 'front'
+                  y = endTile
+                },
+                back() {
+                  blockFace = 'bottom'
+                  y = endTile
+                },
               }
+              sw[blockFace]()
+            } else y--
+          }
 
-              const moved = y !== sprite.y || x !== sprite.x
+          if (payload.dir === Direction.Left) {
+            if (x === 0) {
+              const sw: Record<Face, Function> = {
+                top() {
+                  blockFace = 'left'
+                  x = sprite.y
+                  y = 0
+                },
+                left() {
+                  blockFace = 'back'
+                  x = 0
+                  y = endTile - sprite.y
+                },
+                front() {
+                  blockFace = 'left'
+                  x = endTile
+                },
+                right() {
+                  blockFace = 'front'
+                  x = endTile
+                },
+                bottom() {
+                  blockFace = 'left'
+                  y = endTile
+                  x = endTile - sprite.y
+                },
+                back() {
+                  blockFace = 'left'
+                  x = 0
+                  y = endTile - sprite.y
+                },
+              }
+              sw[blockFace]()
+            } else x--
+          }
 
-              if (hit) hitSound?.play()
-              else if (moved) stepSound?.play()
-              else bumpSound?.play()
+          if (payload.dir === Direction.Down) {
+            if (y === endTile) {
+              const sw: Record<Face, Function> = {
+                top() {
+                  blockFace = 'front'
+                  y = 0
+                },
+                left() {
+                  blockFace = 'bottom'
+                  x = 0
+                  y = endTile - sprite.x
+                },
+                front() {
+                  blockFace = 'bottom'
+                  y = 0
+                },
+                right() {
+                  blockFace = 'bottom'
+                  x = endTile
+                  y = sprite.x
+                },
+                bottom() {
+                  blockFace = 'back'
+                  y = 0
+                },
+                back() {
+                  blockFace = 'top'
+                  y = 0
+                },
+              }
+              sw[blockFace]()
+            } else y++
+          }
+
+          if (payload.dir === Direction.Right) {
+            if (x === endTile) {
+              const sw: Record<Face, Function> = {
+                top() {
+                  blockFace = 'right'
+                  x = endTile - sprite.y
+                  y = 0
+                },
+                left() {
+                  blockFace = 'front'
+                  x = 0
+                },
+                front() {
+                  blockFace = 'right'
+                  x = 0
+                },
+                right() {
+                  blockFace = 'back'
+                  x = endTile
+                  y = endTile - sprite.y
+                },
+                bottom() {
+                  blockFace = 'right'
+                  x = sprite.y
+                  y = endTile
+                },
+                back() {
+                  blockFace = 'right'
+                  x = endTile
+                  y = endTile - sprite.y
+                },
+              }
+              sw[blockFace]()
+            } else x++
+          }
+
+          const collision = values(engine.sprites).find(s => s.blockFace === blockFace && s.x === x && s.y === y)
+          const hit = collision && collision.hp > 0
+
+          if (collision) {
+            if (hit) {
+              collision.hp--
+              collision.pain = true
             }
 
-            sprite.blockFace = blockFace
-            sprite.x = x
-            sprite.y = y
+            blockFace = sprite.blockFace
+            x = sprite.x
+            y = sprite.y
           }
+
+          const moved = y !== sprite.y || x !== sprite.x
+
+          if (hit) hitSound?.play()
+          else if (moved) stepSound?.play()
+          else bumpSound?.play()
+
+          sprite.blockFace = blockFace
+          sprite.x = x
+          sprite.y = y
         }
 
         if (payload.action === Action.CreateSprite) {
           engine.sprites[payload.sprite.id] = payload.sprite
         }
+
         if (payload.action === Action.UpdateSprite) {
           engine.sprites[payload.sprite.id] = {
             ...engine.sprites[payload.sprite.id],
             ...payload.sprite,
           } as Sprite
         }
+
         if (payload.action === Action.DeleteSprite) {
           delete engine.sprites[payload.spriteId]
         }
