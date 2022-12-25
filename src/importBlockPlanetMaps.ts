@@ -41,13 +41,15 @@ async function fetchMapDataImport(mapNumber: number): Promise<BlockPlanetMapData
       `./blockPlanetMapTiles_${mapNumberPaddedWithZeroes}.json`,
     )
 
+    const sepChar = ' '
+
     const tiles: BlockPlanetMapTileData = {
-      top: rawMapTileData[0].map(raw => raw.split('`')),
-      left: rawMapTileData[1].filter((_, i) => i % 3 === 0).map(raw => raw.split('`')),
-      front: rawMapTileData[1].filter((_, i) => i % 3 === 1).map(raw => raw.split('`')),
-      right: rawMapTileData[1].filter((_, i) => i % 3 === 2).map(raw => raw.split('`')),
-      bottom: rawMapTileData[2].map(raw => raw.split('`')),
-      back: rawMapTileData[3].map(raw => raw.split('`')),
+      top: rawMapTileData[0].map(raw => raw.split(sepChar)),
+      left: rawMapTileData[1].filter((_, i) => i % 3 === 0).map(raw => raw.split(sepChar)),
+      front: rawMapTileData[1].filter((_, i) => i % 3 === 1).map(raw => raw.split(sepChar)),
+      right: rawMapTileData[1].filter((_, i) => i % 3 === 2).map(raw => raw.split(sepChar)),
+      bottom: rawMapTileData[2].map(raw => raw.split(sepChar)),
+      back: rawMapTileData[3].map(raw => raw.split(sepChar)),
     }
 
     cache[mapNumber] = { legend, tiles }

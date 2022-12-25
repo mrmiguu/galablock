@@ -17,28 +17,34 @@ type Sprite = {
   y: number
 }
 
-type Map = {
+enum Planet {
+  Tutorial,
+  Eden,
+}
+
+type PlanetData = {
+  number: Planet
   size: number
 }
 
 type EngineState = {
-  map: Map
+  planet: PlanetData
   sprites: {
     [id: string]: Sprite
   }
 }
 
 enum Action {
-  SetMap,
+  SetPlanet,
   CreateSprite,
   UpdateSprite,
   DeleteSprite,
   MoveSprite,
 }
 
-type SetMapPayload = {
-  type: Action.SetMap
-  map: Map
+type SetPlanetPayload = {
+  type: Action.SetPlanet
+  planet: Planet
 }
 
 type CreateSpritePayload = {
@@ -61,11 +67,11 @@ type MoveSpritePayload = {
 }
 
 type EngineActionPayload =
-  | SetMapPayload
+  | SetPlanetPayload
   | MoveSpritePayload
   | CreateSpritePayload
   | UpdateSpritePayload
   | DeleteSpritePayload
 
 export type { Face, Sprite, EngineState, EngineActionPayload }
-export { Action, Direction }
+export { Planet, Action, Direction }

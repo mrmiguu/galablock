@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import useWindowSize from 'react-use/lib/useWindowSize'
 
 import BlockPlanet from './BlockPlanet'
-import { Action, Direction } from './BlockPlanetTypes'
+import { Action, Direction, Planet } from './BlockPlanetTypes'
 import { tilePx } from './consts'
 import { useEngine } from './Engine'
 import ScreenDPad from './ScreenDPad'
@@ -14,12 +14,13 @@ function App() {
   const [engine, sendEngine] = useEngine()
 
   useEffect(() => {
+    const planet = Planet.Tutorial
     const size = 9
 
-    sendEngine({ type: Action.SetMap, map: { size } })
+    sendEngine({ type: Action.SetPlanet, planet })
 
     for (const _ of Array(10)) {
-      const seed = '0_enemies'
+      const seed = `${planet}_enemies`
       const sprites = ['fi', 'he', 'hr', 'kg', 'kn', 'mn', 'om', 'ow', 'po', 'wm'] as const
       const faces = ['top', 'left', 'front', 'right', 'bottom', 'back'] as const
 
@@ -49,7 +50,7 @@ function App() {
 
   const { width, height } = useWindowSize(innerWidth, innerHeight)
 
-  const blockPlanetWidthPx = engine.map.size * tilePx
+  const blockPlanetWidthPx = engine.planet.size * tilePx
 
   const isPortrait = width < height
   const scale = (isPortrait ? width / blockPlanetWidthPx : height / blockPlanetWidthPx) * 0.9
@@ -86,7 +87,7 @@ function App() {
         transform: `scale(${scale})`,
       }}
     >
-      <BlockPlanet mapNumber={0} camera={camera} cameraX={cameraX} cameraY={cameraY} />
+      <BlockPlanet mapNumber={engine.planet.number} camera={camera} cameraX={cameraX} cameraY={cameraY} />
     </div>
   )
 

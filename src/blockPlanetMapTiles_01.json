@@ -1,0 +1,43 @@
+[
+  [
+                                  "t1 t1 t4 t1 t1 t1 t1 t1 t1",
+                                  "t1 t1 t4 t4 t1 t4 t4 t4 t1",
+                                  "t1 t1 t1 t4 t1 t4 t1 t4 t1",
+                                  "t1 t1 t4 t4 t1 t4 t1 t4 t1",
+                                  "t1 t4 t4 t4 t4 t4 t1 t4 t1",
+                                  "t1 t4 t4 t4 t4 t4 t1 t4 t1",
+                                  "t1 t1 t4 t4 t4 t4 t1 t4 t1",
+                                  "t1 t1 t1 t4 t4 t4 t1 t1 t1",
+                                  "t1 t1 t1 t1 t4 t1 t1 t1 t1"
+  ], [
+    "t1 t1 t1 t1 t1 t1 t1 t1 t1", "t1 t1 t1 t1 t4 t1 t1 t1 t1", "t1 t1 t1 t1 t1 t1 t1 t1 t1",
+    "t1 t1 t1 t4 t1 t4 t4 t4 t1", "t1 t1 t1 t1 t4 t1 t1 t1 t1", "t1 t4 t4 t4 t4 t4 t4 t4 t1",
+    "t1 t1 t1 t4 t1 t4 t1 t4 t1", "t1 t1 t1 t1 t4 t1 t1 t1 t1", "t1 t1 t1 t1 t1 t1 t1 t4 t1",
+    "t1 t1 t4 t4 t1 t4 t1 t4 t1", "t1 t1 t1 t1 t4 t1 t1 t1 t1", "t1 t1 t1 t1 t1 t1 t1 t4 t1",
+    "t1 t4 t4 t4 t4 t4 t1 t4 t4", "t4 t4 t4 t4 t4 t4 t4 t4 t4", "t4 t4 t4 t4 t4 t4 t4 t4 t1",
+    "t1 t4 t4 t4 t4 t4 t1 t4 t1", "t1 t1 t1 t1 t4 t1 t1 t1 t1", "t1 t1 t1 t1 t1 t1 t1 t4 t1",
+    "t1 t1 t4 t4 t4 t4 t1 t4 t1", "t1 t1 t1 t1 t4 t1 t1 t1 t1", "t1 t1 t1 t1 t1 t1 t1 t4 t1",
+    "t1 t1 t1 t4 t4 t4 t4 t1 t1", "t1 t1 t1 t1 t4 t1 t1 t1 t1", "t1 t4 t4 t4 t4 t4 t4 t4 t1",
+    "t1 t1 t1 t1 t1 t1 t4 t1 t1", "t1 t1 t1 t1 t4 t1 t1 t1 t1", "t1 t1 t1 t1 t1 t1 t4 t1 t1"
+  ], [
+                                  "t1 t1 t1 t1 t4 t1 t1 t1 t1",
+                                  "t1 t1 t1 t4 t4 t4 t1 t1 t1",
+                                  "t4 t4 t4 t4 t1 t4 t1 t1 t1",
+                                  "t1 t1 t1 t4 t1 t4 t1 t1 t1",
+                                  "t1 t1 t1 t4 t1 t4 t1 t1 t1",
+                                  "t1 t1 t1 t4 t1 t4 t1 t1 t1",
+                                  "t1 t1 t1 t4 t1 t4 t4 t4 t4",
+                                  "t1 t1 t1 t4 t4 t4 t1 t1 t1",
+                                  "t1 t1 t1 t1 t4 t1 t1 t1 t1"
+  ], [
+                                  "t1 t1 t1 t1 t4 t1 t1 t1 t1",
+                                  "t1 t4 t4 t4 t4 t4 t4 t4 t1",
+                                  "t1 t1 t1 t1 t1 t1 t1 t4 t1",
+                                  "t1 t1 t1 t1 t1 t1 t1 t4 t1",
+                                  "t1 t4 t4 t4 t4 t4 t4 t4 t1",
+                                  "t1 t1 t1 t1 t1 t1 t1 t4 t1",
+                                  "t1 t1 t1 t1 t1 t1 t1 t4 t1",
+                                  "t1 t4 t4 t4 t4 t4 t4 t4 t1",
+                                  "t1 t1 t4 t1 t1 t1 t1 t1 t1"
+  ]
+]

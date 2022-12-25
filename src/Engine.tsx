@@ -1,8 +1,8 @@
 import produce from 'immer'
 import { createContext, Dispatch, PropsWithChildren, useContext, useReducer } from 'react'
-import { Action, EngineActionPayload, Direction, EngineState, Sprite, Face } from './BlockPlanetTypes'
+import { Action, EngineActionPayload, Direction, EngineState, Sprite, Face, Planet } from './BlockPlanetTypes'
 import { useSound } from './importSounds'
-import { max, min } from './utils'
+import { values } from './utils'
 
 const EngineContext = createContext<[EngineState, Dispatch<EngineActionPayload>]>(undefined as any)
 
@@ -13,15 +13,15 @@ function EngineProvider({ children }: PropsWithChildren) {
   const engineContext = useReducer(
     (engine: EngineState, payload: EngineActionPayload) =>
       produce(engine, engine => {
-        if (payload.type === Action.SetMap) {
-          engine.map = payload.map
+        if (payload.type === Action.SetPlanet) {
+          engine.planet.number = payload.planet
         }
 
         if (payload.type === Action.MoveSprite) {
           const sprite = engine.sprites[payload.spriteId]
 
           if (sprite) {
-            const endTile = engine.map.size - 1
+            const endTile = engine.planet.size - 1
             let { x, y, blockFace } = sprite
             let tryMoving = false
 
@@ -174,6 +174,14 @@ function EngineProvider({ children }: PropsWithChildren) {
             }
 
             if (tryMoving) {
+              const collision = values(engine.sprites).some(s => s.x === x && s.y === y)
+
+              if (collision) {
+                blockFace = sprite.blockFace
+                x = sprite.x
+                y = sprite.y
+              }
+
               if (y !== sprite.y || x !== sprite.x) stepSound?.play()
               else bumpSound?.play()
             }
@@ -198,8 +206,9 @@ function EngineProvider({ children }: PropsWithChildren) {
         }
       }),
     {
-      map: {
-        size: 0,
+      planet: {
+        number: Planet.Tutorial,
+        size: 9,
       },
       sprites: {},
     },
