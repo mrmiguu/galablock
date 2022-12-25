@@ -41,7 +41,6 @@
   },
   "sprites": {
     "m1": [
-      "./assets/sprites/ACTION RPG MATERIAL VOL.2/CharaChip/man2/man2_01.png",
       "./assets/sprites/ACTION RPG MATERIAL VOL.2/CharaChip/man2/man2_02.png",
       "./assets/sprites/ACTION RPG MATERIAL VOL.2/CharaChip/man2/man2_03.png"
     ]
