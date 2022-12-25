@@ -2,19 +2,21 @@ import BlockPlanetFaceSprite from './BlockPlanetFaceSprite'
 import BlockPlanetFaceTile from './BlockPlanetFaceTile'
 import * as styles from './BlockPlanetStyles'
 import { Face } from './BlockPlanetTypes'
+import { useEngine } from './Engine'
 import { BlockPlanetMapData } from './importBlockPlanetMaps'
+import { values } from './utils'
 
 type BlockPlanetFaceProps = {
   face: Face
   mapData: BlockPlanetMapData
-  camera: Face
-  cameraX: number
-  cameraY: number
 }
 
-function BlockPlanetFace({ face, mapData, cameraX, cameraY }: BlockPlanetFaceProps) {
+function BlockPlanetFace({ face, mapData }: BlockPlanetFaceProps) {
+  const [engine] = useEngine()
   const faceTileData = mapData.tiles[face]
   const tilesWide = faceTileData.length
+
+  const sprites = values(engine.sprites).filter(s => s.blockFace === face)
 
   return (
     <div
@@ -30,7 +32,9 @@ function BlockPlanetFace({ face, mapData, cameraX, cameraY }: BlockPlanetFacePro
         )),
       )}
 
-      <BlockPlanetFaceSprite x={cameraX} y={cameraY} rotate={0} imageURL={mapData.legend.sprites['m1']![0]!} />
+      {sprites.map(({ id, x, y, sprite }) => (
+        <BlockPlanetFaceSprite key={id} x={x} y={y} rotate={0} imageURL={mapData.legend.sprites[sprite]![0]!} />
+      ))}
     </div>
   )
 }

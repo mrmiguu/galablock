@@ -41,12 +41,12 @@ function BlockPlanet({ mapNumber, camera, cameraX, cameraY }: BlockPlanetProps) 
             transformStyle: 'preserve-3d',
           }}
         >
-          <BlockPlanetFace face="top" mapData={mapData} camera={camera} cameraX={cameraX} cameraY={cameraY} />
-          <BlockPlanetFace face="left" mapData={mapData} camera={camera} cameraX={cameraX} cameraY={cameraY} />
-          <BlockPlanetFace face="front" mapData={mapData} camera={camera} cameraX={cameraX} cameraY={cameraY} />
-          <BlockPlanetFace face="right" mapData={mapData} camera={camera} cameraX={cameraX} cameraY={cameraY} />
-          <BlockPlanetFace face="bottom" mapData={mapData} camera={camera} cameraX={cameraX} cameraY={cameraY} />
-          <BlockPlanetFace face="back" mapData={mapData} camera={camera} cameraX={cameraX} cameraY={cameraY} />
+          <BlockPlanetFace face="top" mapData={mapData} />
+          <BlockPlanetFace face="left" mapData={mapData} />
+          <BlockPlanetFace face="front" mapData={mapData} />
+          <BlockPlanetFace face="right" mapData={mapData} />
+          <BlockPlanetFace face="bottom" mapData={mapData} />
+          <BlockPlanetFace face="back" mapData={mapData} />
         </div>
       </div>
     </div>

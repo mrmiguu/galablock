@@ -21,9 +21,9 @@ function App() {
       sprite: {
         id: myId,
         sprite: 'm1',
-        blockFace: 'left',
-        x: 1,
-        y: 7,
+        blockFace: 'front',
+        x: 4,
+        y: 4,
       },
     })
   }, [])
