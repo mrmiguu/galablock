@@ -32,6 +32,7 @@ function App() {
           sprite: pickRandom(sprites, { seed }),
           x: ~~(random({ seed }) * size),
           y: ~~(random({ seed }) * size),
+          hp: -1,
         },
       })
     }
@@ -49,6 +50,7 @@ function App() {
           sprite: pickRandom(sprites, { seed }),
           x: ~~(random({ seed }) * size),
           y: ~~(random({ seed }) * size),
+          hp: 1,
         },
       })
     }
@@ -61,6 +63,7 @@ function App() {
         blockFace: 'front',
         x: 4,
         y: 4,
+        hp: 5,
       },
     })
   }, [])

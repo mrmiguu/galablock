@@ -15,6 +15,7 @@ type Sprite = {
   blockFace: Face
   x: number
   y: number
+  hp: number
 }
 
 enum Planet {

@@ -28,7 +28,7 @@ function BlockPlanetFace({ face, mapData }: BlockPlanetFaceProps) {
     >
       {faceTileData.map((tileRowData, y) =>
         tileRowData.map((tileLegendKey, x) => (
-          <BlockPlanetFaceTile key={`${x},${y}`} x={x} y={y} imageURL={mapData.legend.tiles[tileLegendKey]![0]!} />
+          <BlockPlanetFaceTile key={`${x},${y}`} x={x} y={y} imageURLs={mapData.legend.tiles[tileLegendKey]!} />
         )),
       )}
 
