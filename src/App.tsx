@@ -1,84 +1,44 @@
-import produce from 'immer'
-import { useEffect, useReducer } from 'react'
+import { useEffect } from 'react'
 import useWindowSize from 'react-use/lib/useWindowSize'
 
 import BlockPlanet from './BlockPlanet'
-import { EngineAction, EngineActionPayload, EngineState } from './BlockPlanetTypes'
+import { Action, Direction } from './BlockPlanetTypes'
 import { tilePx } from './consts'
-import { useSound } from './importSounds'
+import { useEngine } from './Engine'
 import ScreenDPad from './ScreenDPad'
-import { keys, max, min } from './utils'
+import { keys } from './utils'
 
 function App() {
-  const { value: stepSound } = useSound('step', { volume: 0.2 })
-  const { value: bumpSound } = useSound('bump', { volume: 0.2 })
-
   const myId = 'abc-123'
 
-  const [engine, sendEngine] = useReducer(
-    (engine: EngineState, { type, spriteId }: EngineActionPayload) =>
-      produce(engine, engine => {
-        const endTile = engine.planetSize - 1
-        const sprite = engine.sprites[spriteId]
+  const [engine, sendEngine] = useEngine()
 
-        if (sprite) {
-          let { x, y } = sprite
-          let tryMoving = false
+  useEffect(() => {
+    sendEngine({ type: Action.SetMap, map: { size: 9 } })
 
-          if (type === EngineAction.Up) {
-            y = max(0, min(endTile, y - 1))
-            tryMoving = true
-          }
-
-          if (type === EngineAction.Left) {
-            x = max(0, min(endTile, x - 1))
-            tryMoving = true
-          }
-
-          if (type === EngineAction.Down) {
-            y = max(0, min(endTile, y + 1))
-            tryMoving = true
-          }
-
-          if (type === EngineAction.Right) {
-            x = max(0, min(endTile, x + 1))
-            tryMoving = true
-          }
-
-          if (tryMoving) {
-            if (y !== sprite.y || x !== sprite.x) stepSound?.play()
-            else bumpSound?.play()
-          }
-
-          sprite.x = x
-          sprite.y = y
-        }
-      }),
-    {
-      planetSize: 9,
-      sprites: {
-        [myId]: {
-          id: myId,
-          sprite: 'm1',
-          blockFace: 'left',
-          x: 1,
-          y: 7,
-        },
+    sendEngine({
+      type: Action.CreateSprite,
+      sprite: {
+        id: myId,
+        sprite: 'm1',
+        blockFace: 'left',
+        x: 1,
+        y: 7,
       },
-    },
-  )
+    })
+  }, [])
 
   const { width, height } = useWindowSize(innerWidth, innerHeight)
 
-  const blockPlanetWidthPx = engine.planetSize * tilePx
+  const blockPlanetWidthPx = engine.map.size * tilePx
 
   const isPortrait = width < height
   const scale = (isPortrait ? width / blockPlanetWidthPx : height / blockPlanetWidthPx) * 0.9
 
-  const goUp = () => sendEngine({ type: EngineAction.Up, spriteId: myId })
-  const goLeft = () => sendEngine({ type: EngineAction.Left, spriteId: myId })
-  const goDown = () => sendEngine({ type: EngineAction.Down, spriteId: myId })
-  const goRight = () => sendEngine({ type: EngineAction.Right, spriteId: myId })
+  const goUp = () => sendEngine({ type: Action.MoveSprite, dir: Direction.Up, spriteId: myId })
+  const goLeft = () => sendEngine({ type: Action.MoveSprite, dir: Direction.Left, spriteId: myId })
+  const goDown = () => sendEngine({ type: Action.MoveSprite, dir: Direction.Down, spriteId: myId })
+  const goRight = () => sendEngine({ type: Action.MoveSprite, dir: Direction.Right, spriteId: myId })
 
   useEffect(() => {
     const onKeyUp = (e: KeyboardEvent) => {
