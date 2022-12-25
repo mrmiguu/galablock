@@ -35,7 +35,7 @@ function BlockPlanet({ mapNumber, camera, cameraX, cameraY }: BlockPlanetProps) 
         }}
       >
         <div
-          className="relative w-full h-full transition-transform ease-out duration-[2500ms]"
+          className="relative w-full h-full transition-transform ease-out duration-[1000ms]"
           style={{
             transform: styles.blockPlanetFace[camera].cameraTransform(cameraX, cameraY, tilesWide),
             transformStyle: 'preserve-3d',
