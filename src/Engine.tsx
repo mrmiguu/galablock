@@ -14,16 +14,6 @@ function EngineProvider({ children }: PropsWithChildren) {
   const engineContext = useReducer(
     (engine: EngineState, payload: EngineActionPayload) =>
       produce(engine, engine => {
-        for (const spriteId in engine.sprites) {
-          const sprite = engine.sprites[spriteId]!
-
-          delete sprite.pain
-
-          if (sprite.hp === 0) {
-            delete engine.sprites[spriteId]
-          }
-        }
-
         if (payload.action === Action.SetPlanet) {
           engine.planet.number = payload.planet
         }
@@ -175,24 +165,38 @@ function EngineProvider({ children }: PropsWithChildren) {
           }
 
           const collision = values(engine.sprites).find(s => s.blockFace === blockFace && s.x === x && s.y === y)
-          const hit = collision && collision.hp > 0
+          const strike = collision && collision.hp > 0
+          const collide = collision && collision.hp !== 0
 
-          if (collision) {
-            if (hit) {
-              collision.hp--
-              collision.pain = true
-            }
-
+          if (collide) {
             blockFace = sprite.blockFace
             x = sprite.x
             y = sprite.y
           }
 
-          const moved = y !== sprite.y || x !== sprite.x
+          const move = y !== sprite.y || x !== sprite.x
+          const bump = !move && !strike
 
-          if (hit) hitSound?.play()
-          else if (moved) stepSound?.play()
-          else bumpSound?.play()
+          if (!bump) {
+            for (const spriteId in engine.sprites) {
+              const sprite = engine.sprites[spriteId]!
+
+              delete sprite.pain
+
+              if (sprite.hp === 0) {
+                delete engine.sprites[spriteId]
+              }
+            }
+          }
+
+          if (strike) {
+            collision.hp--
+            collision.pain = true
+          }
+
+          if (strike) hitSound?.play()
+          else if (move) stepSound?.play()
+          else if (bump) bumpSound?.play()
 
           sprite.blockFace = blockFace
           sprite.x = x
