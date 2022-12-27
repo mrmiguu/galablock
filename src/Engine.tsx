@@ -176,7 +176,10 @@ function EngineProvider({ children }: PropsWithChildren) {
 
         const collision = values(sprites).find(s => s.blockFace === blockFace && s.x === x && s.y === y)
         const strike =
-          collision && collision.hp > 0 && (kind === SpriteKind.Player || collision.kind === SpriteKind.Player)
+          hp !== 0 &&
+          collision &&
+          collision.hp > 0 &&
+          (kind === SpriteKind.Player || collision.kind === SpriteKind.Player)
         const struck =
           collision &&
           hp > 0 &&
