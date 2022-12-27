@@ -226,7 +226,7 @@ function EngineProvider({ children }: PropsWithChildren) {
           }
         }
 
-        const move = blockFace !== sprite.blockFace || y !== sprite.y || x !== sprite.x
+        const move = (blockFace !== sprite.blockFace || y !== sprite.y || x !== sprite.x) && hp !== 0
         const bump = !move && !strike && !struck && hp !== 0
 
         sprite.blockFace = blockFace
