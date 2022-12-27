@@ -2,11 +2,11 @@ import { useEffect } from 'react'
 import useWindowSize from 'react-use/lib/useWindowSize'
 
 import BlockPlanet from './BlockPlanet'
-import { Action, Direction, Face, Planet } from './BlockPlanetTypes'
+import { Action, Direction, Planet, SpriteKind } from './BlockPlanetTypes'
 import { tilePx } from './consts'
 import { useEngine } from './Engine'
 import ScreenDPad from './ScreenDPad'
-import { keys, pickRandom, random, shuffle, uuid } from './utils'
+import { keys, pickRandom, shuffle, uuid } from './utils'
 
 function App() {
   const myId = 'abc-123'
@@ -43,14 +43,17 @@ function App() {
           blockFace,
           x,
           y,
+          dir: Direction.Down,
           hp: -1,
+          kind: SpriteKind.NPC,
         },
       })
     }
 
     for (const _ of Array(60)) {
-      const seed = `${planet}_monsters`
+      const seed = `${planet}_beasts`
       const sprites = ['sl'] as const
+      const directions = [Direction.Up, Direction.Left, Direction.Down, Direction.Right] as const
 
       const [blockFace, x, y] = shuffledTiles.pop()!
 
@@ -62,7 +65,9 @@ function App() {
           blockFace,
           x,
           y,
+          dir: pickRandom(directions, { seed }),
           hp: 1,
+          kind: SpriteKind.Aggressive,
         },
       })
     }
@@ -77,7 +82,9 @@ function App() {
         blockFace,
         x,
         y,
+        dir: Direction.Down,
         hp: 5,
+        kind: SpriteKind.Player,
       },
     })
   }, [])

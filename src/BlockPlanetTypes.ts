@@ -9,14 +9,24 @@ enum Direction {
   Right,
 }
 
+enum SpriteKind {
+  Player,
+  NPC,
+  Pacifist,
+  Defensive,
+  Aggressive,
+}
+
 type Sprite = {
   id: string
   sprite: string
   blockFace: Face
   x: number
   y: number
+  dir: Direction
   hp: number
   pain?: boolean
+  kind: SpriteKind
 }
 
 enum Planet {
@@ -76,4 +86,4 @@ type EngineActionPayload =
   | DeleteSpritePayload
 
 export type { Face, Sprite, EngineState, EngineActionPayload }
-export { Planet, Action, Direction }
+export { SpriteKind, Planet, Action, Direction }
