@@ -200,11 +200,30 @@ function EngineProvider({ children }: PropsWithChildren) {
             collision.kind === SpriteKind.Player)
         const collide = collision && collision.hp !== 0
 
+        const flippedDir =
+          dir === Direction.Up
+            ? Direction.Down
+            : dir === Direction.Left
+            ? Direction.Right
+            : dir === Direction.Down
+            ? Direction.Up
+            : dir === Direction.Right
+            ? Direction.Left
+            : dir
+
         if (collide) {
           blockFace = sprite.blockFace
           x = sprite.x
           y = sprite.y
-          dir = sprite.dir
+
+          if (
+            kind === SpriteKind.Player ||
+            ((kind === SpriteKind.Aggressive || kind === SpriteKind.Defensive) && collision.kind === SpriteKind.Player)
+          ) {
+            dir = sprite.dir
+          } else {
+            dir = flippedDir
+          }
         }
 
         const move = blockFace !== sprite.blockFace || y !== sprite.y || x !== sprite.x
