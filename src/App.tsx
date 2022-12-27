@@ -12,6 +12,7 @@ function App() {
   const myId = 'abc-123'
 
   const [engine, sendEngine] = useEngine()
+  const myPlayer = engine.sprites[myId]
 
   useEffect(() => {
     const planet = Planet.Tutorial
@@ -135,7 +136,11 @@ function App() {
   const screenDPad = <ScreenDPad onUp={goUp} onLeft={goLeft} onDown={goDown} onRight={goRight} />
 
   return (
-    <div className="absolute flex items-center justify-center w-full h-full overflow-hidden">
+    <div
+      className={`absolute flex items-center justify-center w-full h-full overflow-hidden ${
+        myPlayer?.hp === 0 && 'grayscale'
+      }`}
+    >
       {bg}
       {cube}
       {screenDPad}
