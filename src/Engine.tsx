@@ -45,6 +45,7 @@ function EngineProvider({ children }: PropsWithChildren) {
                 blockFace = 'top'
                 x = 0
                 y = sprite.x
+                dir = Direction.Right
               },
               front() {
                 blockFace = 'top'
@@ -54,6 +55,7 @@ function EngineProvider({ children }: PropsWithChildren) {
                 blockFace = 'top'
                 x = endTile
                 y = endTile - sprite.x
+                dir = Direction.Left
               },
               bottom() {
                 blockFace = 'front'
@@ -75,11 +77,13 @@ function EngineProvider({ children }: PropsWithChildren) {
                 blockFace = 'left'
                 x = sprite.y
                 y = 0
+                dir = Direction.Down
               },
               left() {
                 blockFace = 'back'
                 x = 0
                 y = endTile - sprite.y
+                dir = Direction.Right
               },
               front() {
                 blockFace = 'left'
@@ -93,11 +97,13 @@ function EngineProvider({ children }: PropsWithChildren) {
                 blockFace = 'left'
                 y = endTile
                 x = endTile - sprite.y
+                dir = Direction.Up
               },
               back() {
                 blockFace = 'left'
                 x = 0
                 y = endTile - sprite.y
+                dir = Direction.Right
               },
             }
             sw[blockFace]()
@@ -115,6 +121,7 @@ function EngineProvider({ children }: PropsWithChildren) {
                 blockFace = 'bottom'
                 x = 0
                 y = endTile - sprite.x
+                dir = Direction.Right
               },
               front() {
                 blockFace = 'bottom'
@@ -124,6 +131,7 @@ function EngineProvider({ children }: PropsWithChildren) {
                 blockFace = 'bottom'
                 x = endTile
                 y = sprite.x
+                dir = Direction.Left
               },
               bottom() {
                 blockFace = 'back'
@@ -145,6 +153,7 @@ function EngineProvider({ children }: PropsWithChildren) {
                 blockFace = 'right'
                 x = endTile - sprite.y
                 y = 0
+                dir = Direction.Down
               },
               left() {
                 blockFace = 'front'
@@ -158,16 +167,19 @@ function EngineProvider({ children }: PropsWithChildren) {
                 blockFace = 'back'
                 x = endTile
                 y = endTile - sprite.y
+                dir = Direction.Left
               },
               bottom() {
                 blockFace = 'right'
                 x = sprite.y
                 y = endTile
+                dir = Direction.Up
               },
               back() {
                 blockFace = 'right'
                 x = endTile
                 y = endTile - sprite.y
+                dir = Direction.Left
               },
             }
             sw[blockFace]()
@@ -192,6 +204,7 @@ function EngineProvider({ children }: PropsWithChildren) {
           blockFace = sprite.blockFace
           x = sprite.x
           y = sprite.y
+          dir = sprite.dir
         }
 
         const move = blockFace !== sprite.blockFace || y !== sprite.y || x !== sprite.x
@@ -200,6 +213,7 @@ function EngineProvider({ children }: PropsWithChildren) {
         sprite.blockFace = blockFace
         sprite.x = x
         sprite.y = y
+        sprite.dir = dir
 
         if ((kind === SpriteKind.Player && !bump) || kind !== SpriteKind.Player) {
           delete sprite.pain
