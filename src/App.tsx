@@ -30,7 +30,7 @@ function App() {
 
     sendEngine({ action: Action.SetPlanet, planet })
 
-    for (const _ of Array(60)) {
+    for (const _ of Array(6)) {
       const seed = `${planet}_npcs`
       const sprites = ['fi', 'he', 'hr', 'kg', 'kn', 'mn', 'om', 'ow', 'po', 'wm'] as const
 
@@ -51,7 +51,7 @@ function App() {
       })
     }
 
-    for (const _ of Array(60)) {
+    for (const _ of Array(6)) {
       const seed = `${planet}_beasts`
       const sprites = ['sl'] as const
       const directions = [Direction.Up, Direction.Left, Direction.Down, Direction.Right] as const
