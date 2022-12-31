@@ -1,5 +1,5 @@
 import produce, { Draft } from 'immer'
-import { createContext, Dispatch, PropsWithChildren, useContext, useReducer } from 'react'
+import { createContext, Dispatch, PropsWithChildren, useContext, useEffect, useReducer } from 'react'
 import {
   Action,
   Direction,
@@ -10,15 +10,27 @@ import {
   Sprite,
   SpriteKind,
 } from './BlockPlanetTypes'
+import { useMusic } from './importMusic'
 import { useSound } from './importSounds'
 import { values } from './utils'
 
 const EngineContext = createContext<[EngineState, Dispatch<EngineActionPayload>]>(undefined as any)
 
 function EngineProvider({ children }: PropsWithChildren) {
+  const { value: music } = useMusic("This Is My Father's World", { volume: 0.1, loop: true })
   const { value: stepSound } = useSound('step', { volume: 0.2 })
   const { value: bumpSound } = useSound('bump', { volume: 0.2 })
   const { value: hitSound } = useSound('hit', { volume: 0.2 })
+
+  useEffect(() => {
+    if (!music) return
+
+    music.play()
+
+    return () => {
+      music.stop()
+    }
+  }, [music])
 
   const reduce = (engine: Draft<EngineState>, payload: EngineActionPayload) => {
     const { sprites, planet } = engine
